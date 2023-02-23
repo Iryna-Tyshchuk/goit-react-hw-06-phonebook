@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { StyledForm } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addContact } from 'redux/contacts/slice';
+import { selectContacts } from 'redux/selectors';
+
 import { Button } from 'components/Button/Button';
 import { Input } from '../Input/Input';
+import { StyledForm } from './ContactForm.styled';
 
-export function ContactForm({ addContact }) {
+export function ContactForm() {
+  const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
     if (name === 'number') setNumber(value);
@@ -14,9 +22,15 @@ export function ContactForm({ addContact }) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    const isInContacts = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
 
-    const isSuccess = addContact({ name: name.trim(), number });
-    if (!isSuccess) return;
+    if (isInContacts) {
+      alert(`Contact ${name} is already exists!`);
+      return false;
+    }
+    dispatch(addContact({ name: name.trim(), number }));
 
     setName('');
     setNumber('');
@@ -52,7 +66,3 @@ export function ContactForm({ addContact }) {
     </StyledForm>
   );
 }
-
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};

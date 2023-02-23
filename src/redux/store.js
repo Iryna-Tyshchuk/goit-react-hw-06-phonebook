@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from './contacts/slice';
 
 const contactsReducerConfig = {
-  key: 'user',
+  key: 'PryvitPasha',
   storage,
   whitelist: ['contacts'],
 };

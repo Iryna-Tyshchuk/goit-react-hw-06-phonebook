@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
 
-import { App } from 'components/App';
+import { App } from 'components/App/App';
 
 import { GlobalStyle } from 'GlobalStyle';
 import { ThemeProvider } from 'styled-components';
