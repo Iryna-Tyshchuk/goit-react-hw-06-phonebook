@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm.jsx/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { GlobalStyle } from '../GlobalStyle';
+
 import { useLocalStorage } from 'hooks/useLocalStorage';
 
 export function App() {
@@ -76,7 +76,6 @@ export function App() {
           <p>You haven't any contacts</p>
         )}
       </div>
-      <GlobalStyle />
     </div>
   );
 }
